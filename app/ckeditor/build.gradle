@@ -1,8 +1,0 @@
-buildscript {
-    apply from: "$rootProject.projectDir/gradle/buildscript.gradle", to: buildscript
-}
-
-description = "CKEditor"
-defaultTasks = ['aemAppDesignDeploy']
-
-apply plugin: 'com.cognifide.aem'

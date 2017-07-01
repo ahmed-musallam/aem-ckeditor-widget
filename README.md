@@ -21,15 +21,19 @@ Tested on:
 ## Build
 
 ```sh
-# for windows, use ./gradlew instead of gradlew
-
 # generate idea config
-gradlew idea
+./gradlew idea
 
 # generate eclipse config
-gradlew eclipse
+./gradlew eclipse
 
-# deploy package
-gradlew
+# build package to /build/distributions/
+./gradlew build
+
+# deploy package to AEM
+./gradlew aemDeploy
+
+# deploy package... runs default tasks 'clean' 'build' 'aemDeploy' in that order.
+./gradlew
 
 ```

@@ -3,7 +3,7 @@ buildscript {
 }
 
 description = "CKEditor Granite Widget"
-defaultTasks = ['aemRootDeploy']
+defaultTasks 'clean', 'build', 'aemDeploy'
 
 apply plugin: 'com.cognifide.aem'
 
@@ -36,21 +36,6 @@ allprojects { subproject ->
 
     }
 
-    plugins.withId 'java', {
-
-        sourceCompatibility = 1.8
-        targetCompatibility = 1.8
-
-        def compileOptions = {
-            options.encoding = "UTF-8"
-            options.compilerArgs << '-Xlint:deprecation'
-        }
-
-        compileJava compileOptions
-        compileTestJava compileOptions
-
-    }
-
     plugins.withId 'org.dm.bundle', {
 
         // AEM runtime dependencies
@@ -77,16 +62,5 @@ allprojects { subproject ->
 }
 
 aemCompose {
-    includeProjects ':app:*'
-}
-
-aemSatisfy {
-    group 'dependencies', {
-        // local("pkg/vanityurls-components-1.0.2.zip")
-    }
-
-    group 'tools', {
-       // download('https://github.com/OlsonDigital/aem-groovy-console/releases/download/9.0.1/aem-groovy-console-9.0.1.zip')
-       // download("https://github.com/Cognifide/APM/releases/download/cqsm-2.0.0/apm-2.0.0.zip")
-    }
+    includeProjects ':ckeditor:*'
 }
