@@ -1,0 +1,12 @@
+buildscript {
+    apply from: "$rootProject.projectDir/gradle/buildscript.gradle", to: buildscript
+}
+
+description = "CKEditor - App"
+defaultTasks = ['aemAppDeploy']
+
+apply plugin: 'com.cognifide.aem'
+
+aemCompose {
+    includeSubprojects()
+}
