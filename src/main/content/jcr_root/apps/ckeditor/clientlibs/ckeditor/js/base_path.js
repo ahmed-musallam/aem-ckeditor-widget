@@ -1,0 +1,1 @@
+var CKEDITOR_BASEPATH = '/apps/ckeditor/clientlibs/ckeditor/js/';

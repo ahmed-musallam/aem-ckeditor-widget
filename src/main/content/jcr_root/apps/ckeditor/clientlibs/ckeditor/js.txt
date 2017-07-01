@@ -1,0 +1,2 @@
+js/base_path.js
+js/ckeditor.js
