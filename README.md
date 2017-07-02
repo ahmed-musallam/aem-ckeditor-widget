@@ -37,3 +37,16 @@ Tested on:
 ./gradlew
 
 ```
+
+## Usage
+
+add it just like you'd add any granite ui widget to a dialog. use `sling:resourceType="/apps/ckeditor"`
+
+sample:
+
+```
+<text jcr:primaryType="nt:unstructured" 
+	  name="./text"
+	  sling:resourceType="/apps/ckeditor">
+</text>
+```
