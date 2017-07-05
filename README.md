@@ -5,12 +5,6 @@ This project is based on the [gradle-aem-example](https://github.com/Cognifide/g
 
 ![CKEditor Granite widget](doc/CKEditor-widget.jpg)
 
-## Description
-
-This project should be used while starting new project based on AEM.
-Currently Gradle does not support Maven's like archetypes, so you have to copy this project at start and customize it for your needs.
-Documentation for AEM plugin is available in project [Gradle AEM Plugin](https://github.com/Cognifide/gradle-aem-plugin).
-
 
 ## Environment
 
