@@ -1,0 +1,7 @@
+<sly data-sly-use.model="ckeditor-model.js">
+<div>
+    <textarea type="hidden" data-sly-attribute="${model.attributes}">
+        ${model.value @ context='html'}
+    </textarea>
+    <script> CKEDITOR.replace("${properties.name @ context='unsafe'}");</script>
+</div>
