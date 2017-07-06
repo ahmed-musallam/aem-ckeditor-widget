@@ -1,61 +1,37 @@
+/* jshint undef: true, unused: true */
+/* globals use, com, request, properties*/
 
-var JSONObject  = org.apache.sling.commons.json.JSONObject;
-var AttrBuilder = com.adobe.granite.ui.components.AttrBuilder;
 var I18n        = com.day.cq.i18n.I18n;
-var Value       = com.adobe.granite.ui.components.Value;
-use(function ()
+use(["util.js"], function (util)
 {
   "use strict";
-    var name = properties.name;
-    name = name.replace("./", "");
-    var componentValue = new Value(request, null);
-    var value = componentValue.getContentValue(name);
-    
-    var attributes = {};
-    var i18n = new I18n(request);
+  // new i18n provider
+  var i18n = new I18n(request);
 
-    function isTruthy(tocheck){
-      return tocheck != null        &&
-             tocheck != "undefined" &&
-             tocheck != undefined;
-    }
-    function addAttr(attrName, override){
-      if(isTruthy(override)){
-        attributes[attrName] = override;
-      }
-      else{
-        if(isTruthy(properties[attrName])){
-          attributes[attrName] =  properties[attrName];
-        }
-      }
-    }
+  // get the content value
+  var value = util.getValue(request, properties);
 
-    function addClass(className){
-      if(!isTruthy(className)) return;
-      var existingClass =  attributes["class"];
-      if(existingClass) attributes["class"] = attributes["class"] +" " +className;
-      else attributes["class"] = className;
-    }
+  // add attribute names from properties
+  var attrNames = ["id", "rel", "name", "value", "fieldDescription", "fieldLabel"];
+  var attrs = new util.AttrBuilder(attrNames, properties);
+  var otherAttr = new util.AttrBuilder(["fieldDescription", "fieldLabel"], properties);
+  
+  // add other attributes
+  attrs.addAttr("type", "text");
+  attrs.addAttr("placeholder", i18n.getVar(properties.placeholder));
+  attrs.addAttr("title", i18n.getVar(properties.title));
 
-    addAttr("type", "text");
-    addAttr("placeholder", i18n.getVar(properties.emptyText));
-    addAttr("title", i18n.getVar(properties.title));
-
-    if (properties.required) { addAttr("aria-required", true);}
-
-    if(isTruthy(properties.disabled) && properties.disabled) addAttr("disabled", true);
-    
-    addClass(properties.get("class"));
-    addClass("coral-Textfield");
-
-    var attrs = ["id", "class", "rel", "name", "value"];
-    for (var i = 0; i < attrs.length; i++) {
-      var prop = attrs[i];
-      addAttr(prop);
-    }
-  //----------------------------------------------------------------------- return
+  // add required attribute
+  if (properties.required) { attrs.addAttr("aria-required", true);}
+  // add disabled attribute
+  if(util.isTruthy(properties.disabled)) attrs.addAttr("disabled", true);
+  
+  // the "class" property is special in java, we have to use the get method
+  attrs.addClass(properties.get("class"));
+  
   return {
-    "attributes": attributes,
+    "attributes": attrs.attributes,
+    "otherAttrs": otherAttr.attributes,
     "value": value
   };
 }); // use
