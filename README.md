@@ -1,5 +1,8 @@
 # CKEditor Granite widget
+
 This project is a simple granite ui widget to add a CKEditor field to AEM Touch-UI dialogs.
+
+:exclamation::exclamation::exclamation: This project is for illustrating how to integrate CKEditor. Please do not use in production unless you understand how it works and what it would take to support it.
 
 This project is based on the [gradle-aem-example](https://github.com/Cognifide/gradle-aem-example) which is based on the [gradle-aem-plugin](https://github.com/Cognifide/gradle-aem-plugin)
 
